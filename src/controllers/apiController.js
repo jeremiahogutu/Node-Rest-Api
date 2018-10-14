@@ -40,3 +40,12 @@ export const updateArticle = (req, res) => {
         res.json(article)
     })
 };
+
+export const deleteArticle = (req, res) => {
+    Article.remove({_id: req.params.articleId}, (err) => {
+        if (err) {
+            res.send(err)
+        }
+        res.json({message: 'Successfully deleted contact'})
+    })
+};

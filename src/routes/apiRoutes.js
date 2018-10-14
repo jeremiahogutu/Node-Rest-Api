@@ -1,5 +1,6 @@
 import {
     addNewArticle,
+    deleteArticle,
     getArticles,
     getArticleWithID,
     updateArticle
@@ -26,9 +27,7 @@ const routes = (app) => {
         .put(updateArticle)
 
         // delete request
-        .delete((req, res) =>
-            res.send('DELETE request successful!!!')
-        )
+        .delete(deleteArticle)
 };
 
 export default routes;
