@@ -14,8 +14,17 @@ export const addNewArticle = (req, res) => {
     })
 };
 
-export const getContacts = (req, res) => {
+export const getArticles = (req, res) => {
     Article.find({}, (err, article) => {
+        if (err) {
+            res.send(err)
+        }
+        res.json(article)
+    })
+};
+
+export const getArticleWithID = (req, res) => {
+    Article.findById(req.params.articleId, (err, article) => {
         if (err) {
             res.send(err)
         }
