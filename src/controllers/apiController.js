@@ -13,3 +13,12 @@ export const addNewArticle = (req, res) => {
         res.json(article)
     })
 };
+
+export const getContacts = (req, res) => {
+    Article.find({}, (err, article) => {
+        if (err) {
+            res.send(err)
+        }
+        res.json(article)
+    })
+};

@@ -1,15 +1,13 @@
-import {addNewArticle} from "../controllers/apiController";
+import {addNewArticle, getContacts} from "../controllers/apiController";
 
 const routes = (app) => {
     app.route('/article')
         .get((req, res, next) => {
-            // middleware
-            console.log(`Request from: ${req.originalUrl}`);
-            console.log(`Request from: ${req.method}`);
-            next();
-        }, (req, res, next) =>
-            res.send('GET request successful!!!')
-        )
+                // middleware
+                console.log(`Request from: ${req.originalUrl}`);
+                console.log(`Request from: ${req.method}`);
+                next();
+            }, getContacts)
 
         // POST endpoint
         .post(addNewArticle);
