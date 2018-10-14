@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { UserSchema } from "../models/userModel";
+import {UserSchema} from "../models/userModel";
 
 const User = mongoose.model('User', UserSchema);
 
@@ -21,9 +21,26 @@ export const register = (req, res) => {
 };
 
 export const login = (req, res) => {
-
+    User.findOne({
+        email: req.body
+    }, (err, user) => {
+        if (err) throw err;
+        if (!user) {
+            res.status(401).json({message: 'Authentication failed. No user found!'})
+        } else if (user) {
+            if (!user.comparePassword(req.body.password, user.hashPassword)) {
+                res.status(401).json({message: 'Authentication failed. No user found!'})
+            } else {
+                return res.json({token: jwt.sign({email: user.email, username: user.username, _id: user.id }, 'RESTFULAPIs')})
+            }
+        }
+    })
 };
 
-export const loginRequired = (req, res) => {
-
+export const loginRequired = (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.status(401).json({message: 'Authentication failed. No user found!'})
+    }
 };
