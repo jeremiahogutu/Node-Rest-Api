@@ -1,3 +1,5 @@
+import {addNewArticle} from "../controllers/apiController";
+
 const routes = (app) => {
     app.route('/article')
         .get((req, res, next) => {
@@ -9,9 +11,8 @@ const routes = (app) => {
             res.send('GET request successful!!!')
         )
 
-        .post((req, res) =>
-            res.send('POST request successful!!!')
-        );
+        // POST endpoint
+        .post(addNewArticle);
 
     app.route('/article/:articleId')
         .put((req, res) =>
