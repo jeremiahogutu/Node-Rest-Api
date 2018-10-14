@@ -31,3 +31,12 @@ export const getArticleWithID = (req, res) => {
         res.json(article)
     })
 };
+
+export const updateArticle = (req, res) => {
+    Article.findOneAndUpdate({ _id: req.params.articleId}, req.body, { new: true}, (err, article) => {
+        if (err) {
+            res.send(err)
+        }
+        res.json(article)
+    })
+};

@@ -1,4 +1,9 @@
-import {addNewArticle, getArticles, getArticleWithID} from "../controllers/apiController";
+import {
+    addNewArticle,
+    getArticles,
+    getArticleWithID,
+    updateArticle
+} from "../controllers/apiController";
 
 const routes = (app) => {
     app.route('/article')
@@ -13,13 +18,12 @@ const routes = (app) => {
         .post(addNewArticle);
 
     app.route('/article/:articleId')
-        // get contact by id
+
+        // get article by id
         .get(getArticleWithID)
 
         // put request
-        .put((req, res) =>
-            res.send('PUT request successful!!!')
-        )
+        .put(updateArticle)
 
         // delete request
         .delete((req, res) =>
