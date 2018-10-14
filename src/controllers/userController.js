@@ -22,7 +22,7 @@ export const register = (req, res) => {
 
 export const login = (req, res) => {
     User.findOne({
-        email: req.body
+        email: req.body.email
     }, (err, user) => {
         if (err) throw err;
         if (!user) {

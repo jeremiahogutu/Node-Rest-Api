@@ -14,6 +14,7 @@ export const UserSchema = new Schema({
     },
     hashPassword: {
         type: String,
+        required: true
     },
     created_date: {
         type: Date,
