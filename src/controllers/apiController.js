@@ -46,6 +46,6 @@ export const deleteArticle = (req, res) => {
         if (err) {
             res.send(err)
         }
-        res.json({message: 'Successfully deleted contact'})
+        res.json({message: 'Successfully deleted article'})
     })
 };
